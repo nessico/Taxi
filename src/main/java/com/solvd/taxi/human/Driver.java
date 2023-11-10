@@ -1,9 +1,14 @@
 package com.solvd.taxi.human;
 
 import com.solvd.taxi.car.Car;
+import com.solvd.taxi.exceptions.DriverNotFoundException;
 import com.solvd.taxi.utils.ServiceArea;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 public class Driver extends Human {
+
+    private static final Logger LOGGER = LogManager.getLogger(Driver.class);
     // Taxi driver
 
     private int id;
@@ -51,11 +56,9 @@ public class Driver extends Human {
     }
 
 
-
     public void setVehicle(Car car) {
         this.car = car;
     }
-
 
 
     public void setSalary(float salary) {
@@ -74,6 +77,15 @@ public class Driver extends Human {
     @Override
     public String getRole() {
         return "I am a driver";
+    }
+
+    public Driver findDriverById(int id) throws DriverNotFoundException {
+        Driver driver = getId() == id ? this : null;
+        if (driver == null) {
+            LOGGER.warn("Driver with ID not found");
+            throw new DriverNotFoundException("Driver with ID not found");
+        }
+        return driver;
     }
 
 }

@@ -1,6 +1,12 @@
 package com.solvd.taxi.utils;
 
+import com.solvd.taxi.exceptions.PaymentProcessingException;
+
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 public class CreditCardPayment extends PaymentType {
+    private static final Logger LOGGER = LogManager.getLogger(CreditCardPayment.class);
 
     public CreditCardPayment() {
         super();
@@ -13,9 +19,15 @@ public class CreditCardPayment extends PaymentType {
 
     // $2 fee for credit card
     @Override
-    public void processPayment() {
-        double fee = 2.0;
-        setAmount(getAmount() + 2);
+    public void processPayment() throws PaymentProcessingException {
+        try {
+            double fee = 2.0;
+            setAmount(getAmount() + 2);
+            LOGGER.info("Processed $2 credit card fee");
+        } catch (Exception e) {
+            LOGGER.error("Error processing payment");
+            throw new PaymentProcessingException("Error processing payment");
+        }
     }
 
 

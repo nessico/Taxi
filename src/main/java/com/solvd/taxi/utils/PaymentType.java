@@ -1,5 +1,6 @@
 package com.solvd.taxi.utils;
 
+import com.solvd.taxi.exceptions.PaymentProcessingException;
 import com.solvd.taxi.interfaces.IPaymentProcessor;
 
 public abstract class PaymentType implements IPaymentProcessor {
@@ -60,7 +61,7 @@ public abstract class PaymentType implements IPaymentProcessor {
         this.description = description;
     }
 
-    public abstract void processPayment();
+    public abstract void processPayment() throws PaymentProcessingException;
 
     public abstract String toString();
 }

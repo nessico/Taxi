@@ -66,6 +66,12 @@ public abstract class RideType implements ITaxiService {
     @Override
     public abstract void addCostService();
 
+    @Override
+    public abstract void checkRideType() throws Exception;
+
+    @Override
+    public abstract void checkIfRideExist() throws Exception;
+
 
 
 
