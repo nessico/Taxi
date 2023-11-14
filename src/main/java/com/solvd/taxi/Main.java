@@ -5,10 +5,7 @@ import  com.solvd.taxi.car.Ride;
 import  com.solvd.taxi.car.Car;
 import  com.solvd.taxi.car.Vehicle;
 import  com.solvd.taxi.human.*;
-import  com.solvd.taxi.utils.Booking;
-import  com.solvd.taxi.utils.Fare;
-import  com.solvd.taxi.utils.CreditCardPayment;
-import  com.solvd.taxi.utils.ServiceArea;
+import com.solvd.taxi.utils.*;
 
 public class Main {
     public static void main(String[] args) {
@@ -85,6 +82,21 @@ public class Main {
         System.out.println("----");
         printRole(john);
         printRole(gabe);
+
+
+        // Testing queue generic
+
+        // Can have a queue of driver, passenger later, so they are assigned by order of when they requested a ride
+        Rating bobRating = new Rating();
+        bobRating.addRating(5, "Default Passenger 5 star");
+        Passenger bob = new Passenger(2, "Bob", "1112320150 ", bobRating);
+        Queue<Passenger> passengerQueue = new Queue<>();
+        passengerQueue.enqueue(bob);
+        Booking booking3 = new Booking(3, passengerQueue.dequeue(), pickup, dropoff, false);
+        System.out.println("Passenger succesfully dequeud to booking: "+ booking3.getPassenger().getName());
+
+
+
 
 
     }
