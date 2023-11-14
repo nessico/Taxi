@@ -6,9 +6,14 @@ import  com.solvd.taxi.car.Car;
 import  com.solvd.taxi.car.Vehicle;
 import  com.solvd.taxi.human.*;
 import com.solvd.taxi.utils.*;
+import org.apache.logging.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
 
 public class Main {
+    private static final Logger LOGGER = LogManager.getLogger(Main.class);
     public static void main(String[] args) {
+
+
 
         // Core logic of app
 
@@ -18,7 +23,7 @@ public class Main {
         gabeRating.addRating(5, "Default Passenger 5 star");
         Passenger gabe = new Passenger(1, "Gabe Newell", "1234567890 ", gabeRating);
 
-        System.out.println(gabe.getName() + " has a rating of " +  gabe.getRating().getRatingValue(0) + " stars.");
+        LOGGER.info(gabe.getName() + " has a rating of " +  gabe.getRating().getRatingValue(0) + " stars.");
 
         Car johnCar = new Car("CALI213", "Toyota", "Camry", 2015);
 
@@ -28,13 +33,13 @@ public class Main {
         johnRating.addRating(5, "Default Driver 5 star");
         Driver john = new Driver(1, "John", "12451511", johnCar, johnRating, 75000, johnServiceArea);
 
-        System.out.println(john.getName() + " has a rating of " + john.getRating().getRatingValue(0) + " stars.");
+        LOGGER.info(john.getName() + " has a rating of " + john.getRating().getRatingValue(0) + " stars.");
 
-        System.out.println("John drives a " + johnCar.toString());
+        LOGGER.info("John drives a " + johnCar.toString());
 
-        System.out.println("John's service area is " + johnServiceArea.getCityAndState());
+        LOGGER.info("John's service area is " + johnServiceArea.getCityAndState());
 
-        System.out.println("----");
+        LOGGER.info("----");
 
         // Create info for ride
 
@@ -42,20 +47,20 @@ public class Main {
         Location dropoff = new Location("1234 Main St", "San Diego", "CA");
 
         if (pickup.getCityAndState().equals(johnServiceArea.getCityAndState())) {
-            System.out.println("John services this area and can pick up Gabe.");
+            LOGGER.info("John services this area and can pick up Gabe.");
         } else {
-            System.out.println("John cannot pick up the passenger.");
+            LOGGER.info("John cannot pick up the passenger.");
         }
 
         Fare fare = new Fare();
         fare.calculateTotalCost();
 
 
-        System.out.println("The total cost of the ride is $" + fare.getTotalCost());
+        LOGGER.info("The total cost of the ride is $" + fare.getTotalCost());
 
         CreditCardPayment creditCardPayment = new CreditCardPayment(fare.getTotalCost(), "USD", "Visa", "Pending", "ride for gabe by john");
 
-        System.out.println("Gabe made the following payment: " + creditCardPayment.toString());
+        LOGGER.info("Gabe made the following payment: " + creditCardPayment.toString());
 
         // Booking ride
         Booking booking = new Booking(1, gabe, pickup, dropoff, false);
@@ -71,15 +76,15 @@ public class Main {
 
         // Ride is completed
 
-        System.out.println("----");
+        LOGGER.info("----");
 
 
 
-        System.out.println("The ride id is " + ride.getId() + " and it was a "+  ride.getRating().getRatingValue(0)  + " star ride.");
+        LOGGER.info("The ride id is " + ride.getId() + " and it was a "+  ride.getRating().getRatingValue(0)  + " star ride.");
 
 
 
-        System.out.println("----");
+        LOGGER.info("----");
         printRole(john);
         printRole(gabe);
 
@@ -93,7 +98,7 @@ public class Main {
         Queue<Passenger> passengerQueue = new Queue<>();
         passengerQueue.enqueue(bob);
         Booking booking3 = new Booking(3, passengerQueue.dequeue(), pickup, dropoff, false);
-        System.out.println("Passenger succesfully dequeud to booking: "+ booking3.getPassenger().getName());
+        LOGGER.info("Passenger succesfully dequeud to booking: "+ booking3.getPassenger().getName());
 
 
 
@@ -107,7 +112,7 @@ public class Main {
     }
 
     public static void printRole(Human human) {
-        System.out.println(human.getRole());
+        LOGGER.info(human.getRole());
     }
 
 
