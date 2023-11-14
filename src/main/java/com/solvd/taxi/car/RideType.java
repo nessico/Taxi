@@ -4,6 +4,9 @@ import com.solvd.taxi.human.*;
 import com.solvd.taxi.interfaces.ITaxiService;
 import com.solvd.taxi.utils.Fare;
 
+import java.util.HashMap;
+import java.util.Map;
+
 
 public abstract class RideType implements ITaxiService {
 
@@ -15,8 +18,10 @@ public abstract class RideType implements ITaxiService {
     private Fare fare;
     private Rating rating;
     private Car car;
+    private final Map<Driver, Ride> driverRideMap;
 
     public RideType() {
+        driverRideMap = new HashMap<>();
     }
 
     public RideType(int id, Fare fare, Rating rating, Car car) {
@@ -24,6 +29,7 @@ public abstract class RideType implements ITaxiService {
         this.fare = fare;
         this.rating = rating;
         this.car = car;
+        driverRideMap = new HashMap<>();
     }
 
     // getters
@@ -63,6 +69,14 @@ public abstract class RideType implements ITaxiService {
         this.car = car;
     }
 
+    public Map<Driver, Ride> getDriverRideMap() {
+        return driverRideMap;
+    }
+
+    public void setDriverRideMap(Driver driver, Ride ride) {
+        driverRideMap.put(driver, ride);
+    }
+
     @Override
     public abstract void addCostService();
 
@@ -72,6 +86,12 @@ public abstract class RideType implements ITaxiService {
     @Override
     public abstract void checkIfRideExist() throws Exception;
 
+    @Override
+    public abstract void assignDriverToRide(Driver driver, Ride ride);
+
+
+    @Override
+    public abstract Ride getCurrentRide(Driver driver);
 
 
 

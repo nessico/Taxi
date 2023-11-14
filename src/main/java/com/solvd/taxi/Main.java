@@ -17,17 +17,21 @@ public class Main {
 
         // Create Test Passenger, Driver, and Vehicle
 
-        Passenger gabe = new Passenger(1, "Gabe Newell", "1234567890 ", new Rating(5));
+        Rating gabeRating = new Rating();
+        gabeRating.addRating(5, "Default Passenger 5 star");
+        Passenger gabe = new Passenger(1, "Gabe Newell", "1234567890 ", gabeRating);
 
-        System.out.println(gabe.getName() + " has a rating of " + gabe.getRating().getRating() + " stars.");
+        System.out.println(gabe.getName() + " has a rating of " +  gabe.getRating().getRatingValue(0) + " stars.");
 
         Car johnCar = new Car("CALI213", "Toyota", "Camry", 2015);
 
         ServiceArea johnServiceArea = new ServiceArea("San Diego", "CA");
 
-        Driver john = new Driver(1, "John", "12451511", johnCar, new Rating(5), 75000, johnServiceArea);
+        Rating johnRating = new Rating();
+        johnRating.addRating(5, "Default Driver 5 star");
+        Driver john = new Driver(1, "John", "12451511", johnCar, johnRating, 75000, johnServiceArea);
 
-        System.out.println(john.getName() + " has a rating of " + john.getRating().getRating() + " stars.");
+        System.out.println(john.getName() + " has a rating of " + john.getRating().getRatingValue(0) + " stars.");
 
         System.out.println("John drives a " + johnCar.toString());
 
@@ -60,7 +64,9 @@ public class Main {
         Booking booking = new Booking(1, gabe, pickup, dropoff, false);
 
         // During Ride
-        Ride ride = new Ride(111, fare, new Rating(4, "Polite driver, but he's kind of fast"), johnCar);
+        Rating rideRating = new Rating();
+        rideRating.addRating(4, "Polite driver, but he's kind of fast");
+        Ride ride = new Ride(111, fare, rideRating, johnCar);
         ride.addCostService();
 
         // End ride
@@ -72,8 +78,8 @@ public class Main {
 
 
 
-        System.out.println("The ride id is " + ride.getId() + " and it was a " + ride.getRating().getRating() + " star ride.");
-        System.out.println("Gabe gave the following feedback: " + ride.getRating().getComment());
+        System.out.println("The ride id is " + ride.getId() + " and it was a "+  ride.getRating().getRatingValue(0)  + " star ride.");
+
 
 
         System.out.println("----");
@@ -91,5 +97,10 @@ public class Main {
     public static void printRole(Human human) {
         System.out.println(human.getRole());
     }
+
+
+    // testing message response
+
+
 
 }
