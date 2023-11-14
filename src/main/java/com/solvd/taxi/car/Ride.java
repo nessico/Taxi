@@ -70,7 +70,7 @@ public class Ride extends RideType {
 
     }
 
-    public Response<Ride> bookRide(int id, Fare fare, Rating rating, Car car {
+    public Response<Ride> bookRide(int id, Fare fare, Rating rating, Car car) {
         Ride ride = new Ride(id, fare, rating, car);
         return new Response<>(ride, "Ride booked successfully", true);
     }
