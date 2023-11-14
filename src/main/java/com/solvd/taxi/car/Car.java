@@ -1,6 +1,11 @@
 package com.solvd.taxi.car;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 public class Car extends Vehicle {
+
+    Logger LOGGER = LogManager.getLogger(Car.class);
 
     public Car() {
     }
@@ -11,11 +16,11 @@ public class Car extends Vehicle {
 
     @Override
     public void start() {
-        System.out.println("Car starting up");
+        LOGGER.info("Car starting up");
     }
 
     @Override
     public void stop() {
-        System.out.println("Car stopping");
+        LOGGER.info("Car stopping");
     }
 }

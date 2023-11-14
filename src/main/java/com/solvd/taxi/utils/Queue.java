@@ -4,7 +4,7 @@ package com.solvd.taxi.utils;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Queue < T > {
+public class Queue <T> {
     private List<T> elements;
     public Queue() {
         elements = new ArrayList<>();

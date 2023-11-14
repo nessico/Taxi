@@ -71,7 +71,7 @@ public class Driver extends Human {
 
     @Override
     public void message() {
-        System.out.println("Picking up passenger");
+        LOGGER.info("Picking up passenger");
     }
 
     @Override

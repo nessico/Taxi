@@ -37,7 +37,7 @@ public class Passenger extends Human {
 
     @Override
     public void message() {
-        System.out.println("Getting in car");
+        LOGGER.info("Getting in Car");
     }
 
     @Override
