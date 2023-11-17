@@ -105,7 +105,8 @@ public class Main {
         Booking booking3 = new Booking(3, passengerQueue.dequeue(), pickup, dropoff, false);
         LOGGER.info("Passenger succesfully dequeud to booking: "+ booking3.getPassenger().getName());
 
-        System.out.println(john.findDriverById(1));
+        // Test if finding driver works
+        LOGGER.info("Driver found by id: " + john.findDriverById(1).getName());
 
 
 
