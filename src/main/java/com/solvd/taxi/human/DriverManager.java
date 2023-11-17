@@ -17,7 +17,7 @@ public class DriverManager {
         drivers.add(driver);
     }
 
-    public Driver findDriverById(int id) throws DriverNotFoundException {
+    public Driver findDriverById(int id)  {
         return drivers.stream()
                 .filter(driver -> driver.getId() == id)
                 .findFirst()

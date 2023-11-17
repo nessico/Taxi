@@ -4,7 +4,6 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 public class Car extends Vehicle {
-
     Logger LOGGER = LogManager.getLogger(Car.class);
 
     public Car() {

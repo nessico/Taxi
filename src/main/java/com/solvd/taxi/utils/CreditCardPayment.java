@@ -19,7 +19,7 @@ public class CreditCardPayment extends PaymentType {
 
     // $2 fee for credit card
     @Override
-    public void processPayment() throws PaymentProcessingException {
+    public void processPayment()  {
         try {
             double fee = 2.0;
             setAmount(getAmount() + 2);

@@ -18,7 +18,7 @@ public class PayPalPayment extends PaymentType {
 
     // $1 fee for paypal
     @Override
-    public void processPayment() throws PaymentProcessingException {
+    public void processPayment()  {
         try {
             double fee = 1.0;
             setAmount(getAmount() + 2);
@@ -26,6 +26,7 @@ public class PayPalPayment extends PaymentType {
         } catch (Exception e) {
             LOGGER.error("Error processing payment");
             throw new PaymentProcessingException("Error processing payment");
+
         }
     }
 

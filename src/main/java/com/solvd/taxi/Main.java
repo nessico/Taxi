@@ -91,14 +91,23 @@ public class Main {
 
         // Testing queue generic
 
+
+        LOGGER.info("----");
+
         // Can have a queue of driver, passenger later, so they are assigned by order of when they requested a ride
         Rating bobRating = new Rating();
         bobRating.addRating(5, "Default Passenger 5 star");
         Passenger bob = new Passenger(2, "Bob", "1112320150 ", bobRating);
         Queue<Passenger> passengerQueue = new Queue<>();
         passengerQueue.enqueue(bob);
+        LOGGER.info("Passenger succesfully enqued to queue: "+ bob.getName());
+
         Booking booking3 = new Booking(3, passengerQueue.dequeue(), pickup, dropoff, false);
         LOGGER.info("Passenger succesfully dequeud to booking: "+ booking3.getPassenger().getName());
+
+        System.out.println(john.findDriverById(1));
+
+
 
 
 

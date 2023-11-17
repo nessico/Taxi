@@ -33,7 +33,7 @@ public class Ride extends RideType {
     }
 
     @Override
-    public void checkRideType() throws InvalidRideTypeException {
+    public void checkRideType()  {
         try {
             Vehicle vehicle = this.getVehicle();
             LOGGER.info("You have a ride in vehicle type:  " + vehicle.toString());
@@ -44,7 +44,7 @@ public class Ride extends RideType {
     }
 
     @Override
-    public void checkIfRideExist() throws RideNotFoundException {
+    public void checkIfRideExist()  {
         try {
             int rideID = this.getId();
             LOGGER.info("ride exists" + rideID);

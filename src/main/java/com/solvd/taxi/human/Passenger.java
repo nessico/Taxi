@@ -1,6 +1,6 @@
 package com.solvd.taxi.human;
 
-import com.solvd.taxi.exceptions.DriverNotFoundException;
+
 import com.solvd.taxi.exceptions.PassengerNotFoundException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -45,7 +45,7 @@ public class Passenger extends Human {
         return "I am a passenger";
     }
 
-    public Passenger findPassengerById(int id) throws PassengerNotFoundException {
+    public Passenger findPassengerById(int id)  {
         Passenger passenger = getId() == id ? this : null;
         if (passenger == null) {
             LOGGER.warn("Driver with ID not found");

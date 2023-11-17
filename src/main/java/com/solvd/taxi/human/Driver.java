@@ -79,7 +79,7 @@ public class Driver extends Human {
         return "I am a driver";
     }
 
-    public Driver findDriverById(int id) throws DriverNotFoundException {
+    public Driver findDriverById(int id) {
         Driver driver = getId() == id ? this : null;
         if (driver == null) {
             LOGGER.warn("Driver with ID not found");
