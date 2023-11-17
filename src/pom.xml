@@ -7,24 +7,24 @@
     <artifactId>taxi-app</artifactId>
     <version>1.0-SNAPSHOT</version>
 
-    <!-- Java Ver -->
+    <!-- Version Properties, can configure here instead of hardcoding everything manually -->
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <maven.compiler.source>1.8</maven.compiler.source>
-        <maven.compiler.target>1.8</maven.compiler.target>
+        <!-- Java -->
+        <java.version>1.8</java.version>
+        <!-- Log4j -->
+        <log4j.version>2.21.1</log4j.version>
     </properties>
 
 
     <dependencies>
-
         <dependency>
-            <groupId>${log4j.groupId}</groupId>
+            <groupId>org.apache.logging.log4j</groupId>
             <artifactId>log4j-api</artifactId>
             <version>${log4j.version}</version>
         </dependency>
-
         <dependency>
-            <groupId>${log4j.groupId}</groupId>
+            <groupId>org.apache.logging.log4j</groupId>
             <artifactId>log4j-core</artifactId>
             <version>${log4j.version}</version>
         </dependency>
@@ -38,7 +38,8 @@
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>3.8.1</version>
                 <configuration>
-                    <release>8</release> <!-- Has to be same Java version as up top -->
+                    <source>${java.version}</source>
+                    <target>${java.version}</target>
                 </configuration>
             </plugin>
         </plugins>
