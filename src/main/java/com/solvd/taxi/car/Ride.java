@@ -7,6 +7,7 @@ import com.solvd.taxi.human.Location;
 import com.solvd.taxi.human.Passenger;
 import com.solvd.taxi.utils.Fare;
 import com.solvd.taxi.human.Rating;
+import com.solvd.taxi.utils.FareCalculator;
 import com.solvd.taxi.utils.Response;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -33,26 +34,26 @@ public class Ride extends RideType {
     }
 
     @Override
-    public void checkRideType()  {
-        try {
-            Vehicle vehicle = this.getVehicle();
-            LOGGER.info("You have a ride in vehicle type:  " + vehicle.toString());
-        } catch (Exception e){
+    public void checkRideType() {
+        Vehicle vehicle = this.getVehicle();
+        if (vehicle == null) {
             LOGGER.error("Invalid Car Ride type");
             throw new InvalidRideTypeException("Invalid Car Ride type");
         }
+        LOGGER.info("You have a ride in vehicle type: " + vehicle.toString());
     }
 
     @Override
-    public void checkIfRideExist()  {
-        try {
-            int rideID = this.getId();
-            LOGGER.info("ride exists" + rideID);
-        } catch (Exception e) {
+    public void checkIfRideExist() {
+        int rideID = this.getId();
+        // Assuming rideID should be a positive number
+        if (rideID <= 0) {
             LOGGER.error("Ride does not exist");
             throw new RideNotFoundException("Ride does not exist");
         }
+        LOGGER.info("Ride exists with ID: " + rideID);
     }
+
 
 
     // So we know which driver did what ride
@@ -73,6 +74,10 @@ public class Ride extends RideType {
     public Response<Ride> bookRide(int id, Fare fare, Rating rating, Car car) {
         Ride ride = new Ride(id, fare, rating, car);
         return new Response<>(ride, "Ride booked successfully", true);
+    }
+
+    public double calculateFare(FareCalculator calculator) {
+        return calculator.calculateFare(this.getFare().getFare(), 1.5);
     }
 
 

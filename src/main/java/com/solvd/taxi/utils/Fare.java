@@ -17,6 +17,10 @@ public class Fare {
         this.time = time;
     }
 
+    public Fare(double fare) {
+        this.fare = fare;
+    }
+
     // getters
     public double getFare() {
         return fare;

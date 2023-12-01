@@ -108,6 +108,12 @@ public class Main {
         // Test if finding driver works
         LOGGER.info("Driver found by id: " + john.findDriverById(1).getName());
 
+        // Lambda test
+        Fare rideFare = new Fare(100.0); // Example fare
+        Ride rideLambdaTest = new Ride(111, rideFare, rideRating, johnCar);
+        double fareTest = rideLambdaTest.calculateFare((baseFare, multiplier) -> baseFare * multiplier);
+        LOGGER.info("Fare calculated with lambda: " + fareTest);
+
 
 
 
