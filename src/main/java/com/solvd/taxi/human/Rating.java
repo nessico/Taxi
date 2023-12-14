@@ -70,10 +70,16 @@ public class Rating implements IRating {
         if (ratings.isEmpty()) {
             return 0.0;
         }
+        double sum = ratings.stream()
+                .mapToDouble(Pair::getRating)
+                .sum();
+        /* For loop equivalent of streams
         double sum = 0;
         for (Pair rating : ratings) {
             sum += rating.getRating();
         }
+
+         */
         return sum / ratings.size();
     }
 }

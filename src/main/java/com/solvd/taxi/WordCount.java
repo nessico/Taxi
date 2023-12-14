@@ -4,6 +4,7 @@ import org.apache.commons.lang3.StringUtils;
 import java.io.File;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -17,10 +18,18 @@ public class WordCount {
         String[] wordsToCount = {"I", "day", "give"};
         Map<String, Integer> wordCounts = new HashMap<>();
 
+
+        Arrays.stream(wordsToCount)
+                .forEach(word -> wordCounts.put(word, StringUtils.countMatches(content, word)));
+
+        /* For loop equivalent of streams
         for (String word : wordsToCount) {
             int count = StringUtils.countMatches(content, word);
             wordCounts.put(word, count);
         }
+
+         */
+
 
         StringBuilder outputContent = new StringBuilder();
         wordCounts.forEach((word, count) -> outputContent.append(word).append(" = ").append(count).append("\n"));
