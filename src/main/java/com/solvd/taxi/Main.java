@@ -8,6 +8,9 @@ import  com.solvd.taxi.human.*;
 import com.solvd.taxi.utils.*;
 import org.apache.logging.log4j.Logger;
 import org.apache.logging.log4j.LogManager;
+import com.solvd.taxi.human.Driver;
+import java.lang.reflect.Constructor;
+
 
 public class Main {
     private static final Logger LOGGER = LogManager.getLogger(Main.class);
@@ -115,9 +118,22 @@ public class Main {
         LOGGER.info("Fare calculated with lambda: " + fareTest);
 
 
+        // Reflection integration
+        Main mainApp = new Main();
+        Driver dynamicDriver = mainApp.createDriverDynamically();
 
+        if (dynamicDriver != null) {
+            // Create a Ride object
+            Fare dynamicFare = new Fare();
+            Rating rating = new Rating();
+            Car car = new Car();
+            Ride dynamicRide = new Ride(552, dynamicFare, rating, car);
 
+            // Assign the driver to the ride
+            dynamicRide.assignDriverToRide(dynamicDriver, dynamicRide);
 
+            LOGGER.info("Dynamic Driver assigned to ride: " + dynamicRide.getCurrentRide(dynamicDriver).getId());
+        }
 
 
     }
@@ -131,8 +147,27 @@ public class Main {
         LOGGER.info(human.getRole());
     }
 
+    // Reflection method
+    public Driver createDriverDynamically() {
+        try {
+            Class<?> driverClass = Class.forName("com.solvd.taxi.human.Driver");
+            Constructor<?> constructor = driverClass.getConstructor();
 
-    // testing message response
+            // Cast to Driver
+            Driver driver = (Driver) constructor.newInstance();
+
+            // Putting data in reflection
+            driver.setName("John Doe");
+            driver.setPhone("1234567890");
+
+            return driver;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+
 
 
 
